@@ -10,9 +10,10 @@ export default function UsersView() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL_SCHEDULE;
         const fetchUsers = async () => {
             try {
-                const response = await fetch("/api/users");
+                const response = await fetch(apiUrl + "api/users");
 
                 if (!response.ok) {
                     // throw new Error("Failed to fetch users" || any);

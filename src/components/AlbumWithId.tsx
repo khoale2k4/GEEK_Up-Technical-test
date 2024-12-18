@@ -13,7 +13,8 @@ const AlbumId: React.FC<{ id: string }> = ({ id }) => {
     useEffect(() => {
         const fetchAlbum = async () => {
             try {
-                const response = await fetch(`/api/albums/${id}`);
+                const apiUrl = process.env.NEXT_PUBLIC_API_URL_SCHEDULE;
+                const response = await fetch(`${apiUrl}api/albums/${id}`);
                 const data = await response.json();
                 console.log(data);
 

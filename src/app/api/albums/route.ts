@@ -9,6 +9,15 @@ export async function GET(req: Request) {
     try {
         await sleep(500);
         const { searchParams } = new URL(req.url);
+        if (!Array.isArray(albums)) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Dữ liệu album không hợp lệ.",
+                },
+                { status: 500 }
+            );
+        }
         const page = parseInt(searchParams.get('page') || '1', 10);
         const size = parseInt(searchParams.get('size') || '10', 10);
 

@@ -7,12 +7,22 @@ function sleep(ms: number) {
 
 export async function GET(
     request: Request,
-    { params }: { params: Promise<{ id: string }> }
+    context: { params: Promise<{ id: string }> }
   ) {
     try {
         await sleep(500);
-        const { id } = await params;
-
+        const params = await context.params;
+        const { id } = params;
+        if (!Array.isArray(albums)) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Dữ liệu albums không hợp lệ.",
+                },
+                { status: 500 }
+            );
+        }
+        
         if (id === "-1") {
             return NextResponse.json(
                 {

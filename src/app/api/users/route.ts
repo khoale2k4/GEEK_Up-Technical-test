@@ -8,6 +8,15 @@ function sleep(ms: number) {
 export async function GET() {
     try {
         await sleep(500);
+        if (!Array.isArray(users)) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Dữ liệu user không hợp lệ.",
+                },
+                { status: 500 }
+            );
+        }
         return NextResponse.json(
             {
                 success: true,

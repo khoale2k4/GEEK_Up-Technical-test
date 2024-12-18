@@ -7,11 +7,23 @@ function sleep(ms: number) {
 
 export async function GET(
     request: Request,
-    { params }: { params: Promise<{ id: string }> }
+    context: { params: Promise<{ id: string }> }
   ) {
     try {
         await sleep(500);
-        const { id } = await params;
+        const params = await context.params;
+        const { id } = params;
+
+        if (!Array.isArray(albums)) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Dữ liệu albums không hợp lệ.",
+                },
+                { status: 500 }
+            );
+        }
+        
 
         if (id === "-1") {
             return NextResponse.json(
@@ -24,6 +36,16 @@ export async function GET(
         }
 
         const matchingAlbums = albums.filter((album) => album.author.id === id);
+
+        if (matchingAlbums.length === 0) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Không tìm được album của người dùng " + id,
+                },
+                { status: 404 }
+            );
+        }
 
         if(!matchingAlbums) {
             return NextResponse.json(

@@ -7,11 +7,12 @@ function sleep(ms: number) {
 
 export async function GET(
     request: Request,
-    { params }: { params: Promise<{ id: string }> }
-  ) {
+    context: { params: Promise<{ id: string }> }
+) {
     try {
-        await sleep(500);
-        const { id } = await params;
+        await sleep(500); 
+        const params = await context.params;
+        const { id } = params;
 
         if (id === "-1") {
             return NextResponse.json(
@@ -25,7 +26,7 @@ export async function GET(
 
         const user = users.find((user) => user.id === id);
 
-        if(!user) {
+        if (!user) {
             return NextResponse.json(
                 {
                     success: false,
@@ -39,7 +40,7 @@ export async function GET(
             {
                 success: true,
                 message: "Lấy người dùng thành công!",
-                data: user
+                data: user,
             },
             { status: 200 }
         );
@@ -56,7 +57,7 @@ export async function GET(
         return NextResponse.json(
             {
                 success: false,
-                error: 'Đã có lỗi xảy ra',
+                error: "Đã có lỗi xảy ra",
             },
             { status: 500 }
         );
