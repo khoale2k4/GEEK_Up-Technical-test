@@ -22,8 +22,7 @@ const AlbumList: React.FC = () => {
         const fetchAlbums = async () => {
             try {
                 setLoading(true);
-                const apiUrl = process.env.NEXT_PUBLIC_API_URL_SCHEDULE;
-                const res = await fetch(`${apiUrl}api/albums?size=${albumsPerPage}&page=${currentPage}`);
+                const res = await fetch(`${baseUrl}/api/albums?size=${albumsPerPage}&page=${currentPage}`);
                 const data = await res.json();
                 console.log(data);
                 if (data.success) {

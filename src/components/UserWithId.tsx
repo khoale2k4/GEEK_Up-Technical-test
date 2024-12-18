@@ -10,8 +10,7 @@ const UserProfile = ({ id }: { id: string }) => {
         const fetchAlbums = async () => {
             try {
                 setLoading(true);
-                const apiUrl = process.env.NEXT_PUBLIC_API_URL_SCHEDULE;
-                const response = await fetch(`${apiUrl}api/albums/byUserId/${id}`);
+                const response = await fetch(`${baseUrl}/api/albums/byUserId/${id}`);
                 const result = await response.json();
 
                 if (result.success) {
