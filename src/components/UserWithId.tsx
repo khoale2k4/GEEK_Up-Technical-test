@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Loading from "./Loading";
+import { baseUrl } from "@/utils/constrant";
 
 const UserProfile = ({ id }: { id: string }) => {
     const [albums, setAlbums] = useState<AlbumType[]>([]);

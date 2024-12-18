@@ -3,6 +3,7 @@
 import { Link, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
+import { baseUrl } from "@/utils/constrant";
 
 const albumColumns = [
     { key: "id", label: "ID", align: "start" },

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Loading from "./Loading";
 import { redirect } from "next/navigation";
 import AlbumContent from "./AlbumContent";
+import { baseUrl } from "@/utils/constrant";
 
 const AlbumId: React.FC<{ id: string }> = ({ id }) => {
     const [album, setAlbum] = useState<AlbumType | null>(null);

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import UserList from "@/components/Userlist";
 import Loading from "@/components/Loading";
 import Error from "next/error";
+import { baseUrl } from "@/utils/constrant";
 
 export default function UsersView() {
     const [userList, setUserList] = useState<UserType[]>([]);
